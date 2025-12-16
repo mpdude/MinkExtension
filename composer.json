@@ -24,12 +24,15 @@
         "php": "^7.4 || ^8",
         "behat/behat": "^3.0.5",
         "behat/mink": "^1.5",
-        "symfony/config": "^4.4 || ^5.0 || ^6.0 || ^7.0"
+        "symfony/config": "^6.4 || ^7.3 || ^8.0",
+        "symfony/dependency-injection": "^6.4 || ^7.3 || ^8.0",
+        "symfony/event-dispatcher": "^6.4 || ^7.3 || ^8.0",
+        "symfony/http-client": "^6.4 || ^7.3 || ^8.0"
     },
     "require-dev": {
         "behat/mink-goutte-driver": "^1.1 || ^2.0",
-        "phpspec/phpspec": "^6.0 || ^7.0 || 7.1.x-dev",
-        "mink/webdriver-classic-driver": "^1.0@dev"
+        "phpspec/phpspec": "^6.0 || ^7.0 || ^8.0",
+        "mink/webdriver-classic-driver": "^1.0"
     },
     "replace": {
         "behat/mink-extension": "self.version"
