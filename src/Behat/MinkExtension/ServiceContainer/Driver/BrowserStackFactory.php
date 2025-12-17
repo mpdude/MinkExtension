@@ -11,6 +11,7 @@
 namespace Behat\MinkExtension\ServiceContainer\Driver;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\DependencyInjection\Definition;
 
 class BrowserStackFactory extends Selenium2Factory
 {
@@ -25,7 +26,7 @@ class BrowserStackFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function configure(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder): void
     {
         $builder
             ->children()
@@ -40,7 +41,7 @@ class BrowserStackFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function buildDriver(array $config)
+    public function buildDriver(array $config): Definition
     {
         $config['wd_host'] = sprintf('%s:%s@hub.browserstack.com/wd/hub', $config['username'], $config['access_key']);
 

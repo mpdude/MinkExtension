@@ -11,6 +11,7 @@
 namespace Behat\MinkExtension\ServiceContainer\Driver;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\DependencyInjection\Definition;
 
 class SauceLabsFactory extends Selenium2Factory
 {
@@ -25,7 +26,7 @@ class SauceLabsFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function configure(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder): void
     {
         $builder
             ->children()
@@ -41,7 +42,7 @@ class SauceLabsFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function buildDriver(array $config)
+    public function buildDriver(array $config): Definition
     {
         $host = 'ondemand.saucelabs.com';
         if ($config['connect']) {

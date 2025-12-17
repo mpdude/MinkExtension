@@ -32,21 +32,19 @@ class RawMinkContext implements MinkAwareContext
      *
      * @return void
      */
-    public function setMink(Mink $mink)
+    public function setMink(Mink $mink): void
     {
         $this->mink = $mink;
     }
 
     /**
      * Returns Mink instance.
-     *
-     * @return Mink
      */
-    public function getMink()
+    public function getMink(): Mink
     {
         if (null === $this->mink) {
             throw new \RuntimeException(
-                'Mink instance has not been set on Mink context class. ' . 
+                'Mink instance has not been set on Mink context class. ' .
                 'Have you enabled the Mink Extension?'
             );
         }
@@ -56,10 +54,8 @@ class RawMinkContext implements MinkAwareContext
 
     /**
      * Returns the parameters provided for Mink.
-     *
-     * @return array
      */
-    public function getMinkParameters()
+    public function getMinkParameters(): array
     {
         return $this->minkParameters;
     }
@@ -68,10 +64,8 @@ class RawMinkContext implements MinkAwareContext
      * Sets parameters provided for Mink.
      *
      * @param array $parameters
-     *
-     * @return void
      */
-    public function setMinkParameters(array $parameters)
+    public function setMinkParameters(array $parameters): void
     {
         $this->minkParameters = $parameters;
     }
@@ -80,10 +74,8 @@ class RawMinkContext implements MinkAwareContext
      * Returns specific mink parameter.
      *
      * @param string $name
-     *
-     * @return mixed
      */
-    public function getMinkParameter($name)
+    public function getMinkParameter($name): mixed
     {
         return isset($this->minkParameters[$name]) ? $this->minkParameters[$name] : null;
     }
@@ -94,10 +86,8 @@ class RawMinkContext implements MinkAwareContext
      *
      * @param string $name  The key of the parameter
      * @param string $value The value of the parameter
-     *
-     * @return void
      */
-    public function setMinkParameter($name, $value)
+    public function setMinkParameter($name, $value): void
     {
         $this->minkParameters[$name] = $value;
     }
@@ -106,10 +96,8 @@ class RawMinkContext implements MinkAwareContext
      * Returns Mink session.
      *
      * @param string|null $name name of the session OR active session will be used
-     *
-     * @return Session
      */
-    public function getSession($name = null)
+    public function getSession($name = null): Session
     {
         return $this->getMink()->getSession($name);
     }
@@ -118,10 +106,8 @@ class RawMinkContext implements MinkAwareContext
      * Returns Mink session assertion tool.
      *
      * @param string|null $name name of the session OR active session will be used
-     *
-     * @return WebAssert
      */
-    public function assertSession($name = null)
+    public function assertSession($name = null): WebAssert
     {
         return $this->getMink()->assertSession($name);
     }
@@ -131,10 +117,8 @@ class RawMinkContext implements MinkAwareContext
      *
      * @param string      $path
      * @param string|null $sessionName
-     *
-     * @return void
      */
-    public function visitPath($path, $sessionName = null)
+    public function visitPath($path, $sessionName = null): void
     {
         $this->getSession($sessionName)->visit($this->locatePath($path));
     }
@@ -144,10 +128,8 @@ class RawMinkContext implements MinkAwareContext
      * Override to provide custom routing mechanism.
      *
      * @param string $path
-     *
-     * @return string
      */
-    public function locatePath($path)
+    public function locatePath($path): string
     {
         $startUrl = rtrim($this->getMinkParameter('base_url') ?? '', '/') . '/';
 
@@ -161,10 +143,8 @@ class RawMinkContext implements MinkAwareContext
      *                         <browser_name>_<ISO 8601 date>_<randomId>.png
      * @param string $filepath Desired filepath, defaults to
      *                         upload_tmp_dir, falls back to sys_get_temp_dir()
-     *
-     * @return void
      */
-    public function saveScreenshot($filename = null, $filepath = null)
+    public function saveScreenshot($filename = null, $filepath = null): void
     {
         // Under Cygwin, uniqid with more_entropy must be set to true.
         // No effect in other environments.

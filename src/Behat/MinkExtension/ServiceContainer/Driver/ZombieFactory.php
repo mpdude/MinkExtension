@@ -34,7 +34,7 @@ class ZombieFactory implements DriverFactory
     /**
      * {@inheritdoc}
      */
-    public function configure(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder): void
     {
         $builder
             ->children()
@@ -51,7 +51,7 @@ class ZombieFactory implements DriverFactory
     /**
      * {@inheritdoc}
      */
-    public function buildDriver(array $config)
+    public function buildDriver(array $config): Definition
     {
         if (!class_exists('Behat\Mink\Driver\ZombieDriver')) {
             throw new \RuntimeException(

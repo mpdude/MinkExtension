@@ -37,7 +37,7 @@ class BrowserKitFactory implements DriverFactory
     /**
      * {@inheritdoc}
      */
-    public function configure(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder): void
     {
         $builder
             ->children()
@@ -53,7 +53,7 @@ class BrowserKitFactory implements DriverFactory
     /**
      * {@inheritdoc}
      */
-    public function buildDriver(array $config)
+    public function buildDriver(array $config): Definition
     {
         if (!class_exists(BrowserKitDriver::class)) {
             throw new \RuntimeException('Install behat/mink-browserkit-driver in order to use the browserkit_http driver.');

@@ -4,6 +4,7 @@
 namespace Behat\MinkExtension\ServiceContainer\Driver;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\DependencyInjection\Definition;
 
 class AppiumFactory extends Selenium2Factory
 {
@@ -18,7 +19,7 @@ class AppiumFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function configure(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder): void
     {
         $builder
             ->children()
@@ -33,7 +34,7 @@ class AppiumFactory extends Selenium2Factory
     /**
      * {@inheritdoc}
      */
-    public function buildDriver(array $config)
+    public function buildDriver(array $config): Definition
     {
         $host = $config['appium_host'].":".$config['appium_port'];
 
