@@ -22,10 +22,16 @@ jobs:
                     - '5.4.*'
                     - '6.4.*'
                     - '7.4.*'
+                    - '8.*'
                 exclude:
                     # Symfony 7.4 requires PHP >= 8.2
                     - php-version: '8.1'
                       symfony-version: '7.4.*'
+                    # Symfony 8.0 requires PHP >= 8.4
+                    - php-version: '8.1'
+                      symfony-version: '8.*'
+                    - php-version: '8.3'
+                      symfony-version: '8.*'
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -49,10 +55,25 @@ jobs:
                   restore-keys: |
                       composer-${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.symfony-version }}-
 
+            # See https://github.com/Behat/Behat/pull/1687 - Behat 3 does not yet declare compatibility with Symfony 8 components,
+            # since interface changes in Symfony would break the contract Behat had with extension authors.
+            # Regarding this library here, we have taken care of the issue in 580d7e4. So, we can -- for tests -- use a dev-commit
+            # from Behat that declares compat with Symfony 8, but contains no other breaking changes.
+            - name: Update behat/behat requirement for Symfony 8.*
+              if: matrix.symfony-version == '8.*'
+              run: jq --indent 4 '.require["behat/behat"] = "4.x-dev#bc90070c23b63d74536a4f0da3c852dd02b670c8 as 3.999.999"' composer.json > composer.json.tmp && mv composer.json.tmp composer.json
+
             - name: Install dependencies with targeted Symfony version
               run: composer install --prefer-dist --no-progress
               env:
                   SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
+
+            # See https://github.com/phpspec/phpspec/pull/1503 - PHPSpec does not work with symfony/console 8.x.
+            # Let's downgrade to console 7.4 for now.
+            - name: Downgrade to symfony/console 7.4
+              if: matrix.symfony-version == '8.*'
+              run:
+                  composer require symfony/console '^7.4'
 
             - name: PHPSpec
               run: vendor/bin/phpspec run -f pretty
