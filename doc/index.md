@@ -159,7 +159,6 @@ Configuration settings depend on the Mink driver being used. Out of the box, Min
 >
 > But if you're using Composer, you need to install drivers that you need first:
 >
-> - GoutteDriver - `behat/mink-goutte-driver`
 > - SeleniumDriver - `behat/mink-selenium-driver`
 > - Selenium2Driver (also used for SauceLabs and BrowserStack) - `behat/mink-selenium2-driver`
 > - SahiDriver - `behat/mink-sahi-driver`
@@ -176,54 +175,6 @@ Configuration settings depend on the Mink driver being used. Out of the box, Min
                     my_session:
                         browserkit_http: ~
     ```
-
-* **[deprecated] GoutteDriver** - headless driver without JavaScript support. In order to use it, install [`behat/mink-goutte-driver`](https://packagist.org/packages/behat/mink-goutte-driver) through Composer. Then, modify your `behat.yml` profile:
-
-    ```yaml
-    default:
-        extensions:
-            Behat\MinkExtension:
-                sessions:
-                    my_session:
-                        goutte: ~
-    ```
-
-  **Warning: Goutte has been abandoned**
-
-  Goutte has been abandoned, and so Goutte support has been deprecated. It will
-  be removed in the next major version of this extension.
-
-  **Tips: HTTPS and self-signed certificate**
-
-  If you use Behat/Mink/Goutte to test your application, and want to test an
-  application secured with HTTPS, but with a self-signed certificate, you can use
-  the following parameters to avoid the validation error triggered by Guzzle:
-
-  * For **Guzzle 4** or later:
-
-      ```yaml
-      default:
-          extensions:
-              Behat\MinkExtension:
-                  sessions:
-                      my_session:
-                          goutte:
-                              guzzle_parameters:
-                                  verify: false
-      ```
-
-  * For **Guzzle 3** or earlier:
-
-      ```yaml
-      default:
-          extensions:
-              Behat\MinkExtension:
-                  sessions:
-                      my_session:
-                          goutte:
-                              guzzle_parameters:
-                                  ssl.certificate_authority: false
-      ```
 
 * **Selenium2Driver** - javascript driver. In order to use it, install [`behat/mink-selenium2-driver`](https://packagist.org/packages/behat/mink-selenium2-driver) through Composer. Then, modify your `behat.yml` profile:
 

@@ -1,5 +1,9 @@
 # Changelog for FriendsOfBehat/MinkExtension
 
+## Version 3.0.0
+
+* [BC break] Goutte support has been removed.
+
 ## Version 2.8.0
 
 * The classes `FailureShowListener`, `SessionsListener` and `MinkExtension` have been marked as `@final`, and they will become
