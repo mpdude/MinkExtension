@@ -1,5 +1,5 @@
 {
-    "name": "friends-of-behat/mink-extension",
+    "name": "mpdude/mink-extension",
     "description": "Mink extension for Behat",
     "license": "MIT",
     "type": "behat-extension",
@@ -17,6 +17,10 @@
         {
             "name": "Christophe Coevoet",
             "email": "stof@notk.org"
+        },
+        {
+            "name": "Matthias Pigulla",
+            "email": "mp@webfactory.de"
         }
     ],
     "homepage": "https://github.com/FriendsOfBehat/MinkExtension#readme",
@@ -33,16 +37,12 @@
         "mink/webdriver-classic-driver": "^1.0@dev"
     },
     "replace": {
+        "friends-of-behat/mink-extension": "self.version",
         "behat/mink-extension": "self.version"
     },
     "autoload": {
         "psr-0": {
             "Behat\\MinkExtension": "src/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev"
         }
     }
 }
