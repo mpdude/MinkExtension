@@ -146,7 +146,7 @@ session using a javascript driver in the order of the configuration (it would
 be `first_session` in the example above as `selenium2` supports Javascript).
 If it is not configured explicitly, the default session is set to the first
 session using a non-javascript driver if any, or to the first javascript session
-otherwise (it would be `second_session` above as `goutte` does not support
+otherwise (it would be `second_session` above as `browserkit_http` does not support
 javascript).
 
 ### Drivers
@@ -177,7 +177,7 @@ Configuration settings depend on the Mink driver being used. Out of the box, Min
                         browserkit_http: ~
     ```
 
-* **GoutteDriver** - headless driver without JavaScript support. In order to use it, install [`behat/mink-goutte-driver`](https://packagist.org/packages/behat/mink-goutte-driver) through Composer. Then, modify your `behat.yml` profile:
+* **[deprecated] GoutteDriver** - headless driver without JavaScript support. In order to use it, install [`behat/mink-goutte-driver`](https://packagist.org/packages/behat/mink-goutte-driver) through Composer. Then, modify your `behat.yml` profile:
 
     ```yaml
     default:
@@ -187,6 +187,11 @@ Configuration settings depend on the Mink driver being used. Out of the box, Min
                     my_session:
                         goutte: ~
     ```
+
+  **Warning: Goutte has been abandoned**
+
+  Goutte has been abandoned, and so Goutte support has been deprecated. It will
+  be removed in the next major version of this extension.
 
   **Tips: HTTPS and self-signed certificate**
 

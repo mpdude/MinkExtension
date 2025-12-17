@@ -62,6 +62,8 @@ class GoutteFactory implements DriverFactory
      */
     public function buildDriver(array $config)
     {
+        trigger_deprecation('friends-of-behat/mink-extension', '2.8.0', 'Using the "goutte" driver is deprecated, since Goutte has been abandoned. Goutte support will be removed in the next major version. Switch to the browserkit_http driver instead.');
+
         if (!class_exists('Behat\Mink\Driver\GoutteDriver')) {
             throw new \RuntimeException(
                 'Install MinkGoutteDriver in order to use goutte driver.'
