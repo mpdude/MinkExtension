@@ -4,6 +4,8 @@
 
 * [BC break] Goutte support has been removed.
 
+* [BC break] The classes `FailureShowListener`, `SessionsListener` and `MinkExtension` are now `final`.
+
 ## Version 2.8.0
 
 * The classes `FailureShowListener`, `SessionsListener` and `MinkExtension` have been marked as `@final`, and they will become
