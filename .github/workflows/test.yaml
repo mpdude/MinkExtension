@@ -18,9 +18,8 @@ jobs:
                     - '8.0'
                     - '8.1'
                 symfony-version:
-                    - '4.4.*'
-                    - '5.4.*'
                     - '6.4.*'
+                    - 'none'
                 exclude:
                     - php-version: '7.4'
                       symfony-version: '6.4.*'
@@ -28,7 +27,9 @@ jobs:
                       symfony-version: '6.4.*'
                 include:
                     - php-version: '8.2'
-                      symfony-version: '7.0.*'
+                      symfony-version: '7.3.*'
+                    - php-version: '8.4'
+                      symfony-version: '7.4.*'
         steps:
             - name: Checkout
               uses: actions/checkout@v6
@@ -46,6 +47,7 @@ jobs:
 
             - name: Configure Symfony version
               run: composer require --no-update "symfony/config:${{ matrix.symfony-version }}" "symfony/dependency-injection:${{ matrix.symfony-version }}"
+              if: matrix.symfony-version != 'none'
 
             - name: Install dependencies
               run: composer install --prefer-dist --no-progress
